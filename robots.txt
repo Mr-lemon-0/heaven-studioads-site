@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://heaven-studioads.surge.sh/sitemap.xml
