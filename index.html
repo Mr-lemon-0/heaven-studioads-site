@@ -136,7 +136,7 @@
     <span class="tag">ON AIR</span>
     <h2>Our own ads, <em>made the same way.</em></h2>
     <figure class="phone">
-      <video data-src-mobile="media/agency_promo_mobile.mp4" src="media/agency_promo_1080.mp4" poster="media/poster.jpg" width="1080" height="1920" autoplay muted loop playsinline controls preload="metadata"></video>
+      <div class="hero-media" id="heroMedia"><img src="media/poster.jpg" alt="Frame from a Heaven Studioads realistic video ad" width="1080" height="1920" fetchpriority="high" decoding="async"><button id="heroPlay" aria-label="Play the sample video ad">▶</button></div>
     </figure>
     <p class="sub" style="text-align:center">Every Heaven Studioads asset — shot, styled and QA'd in-house. This one is ours.</p>
   </div>
@@ -409,6 +409,18 @@
   }
  ]
 }
+</script>
+<script>
+(function(){
+ var box=document.getElementById('heroMedia'), btn=document.getElementById('heroPlay');
+ if(!box||!btn) return;
+ btn.addEventListener('click', function(){
+   var src = window.matchMedia('(max-width: 600px)').matches ? 'media/agency_promo_mobile.mp4' : 'media/agency_promo_1080.mp4';
+   var v=document.createElement('video');
+   v.src=src; v.controls=true; v.autoplay=true; v.playsInline=true; v.width=1080; v.height=1920;
+   box.replaceChildren(v); v.play().catch(function(){});
+ });
+})();
 </script>
 </body>
 
