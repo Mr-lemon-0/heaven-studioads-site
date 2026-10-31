@@ -134,3 +134,7 @@ body:JSON.stringify({_subject:'Booking request — '+v('#bk-brand'),_template:'t
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') set(false); });
   document.addEventListener('click', (e) => { if (card.classList.contains('open') && !card.contains(e.target) && !btn.contains(e.target)) set(false); });
 })();
+
+// small screens: swap to the lighter cut before playback (mobile data + LCP)
+(function(){var v=document.querySelector('video[data-src-mobile]');
+ if(v && window.matchMedia('(max-width: 600px)').matches){v.src=v.getAttribute('data-src-mobile');v.load();}})();
