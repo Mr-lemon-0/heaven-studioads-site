@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mr-lemon-0.github.io/heaven-studioads-site/sitemap.xml
+Sitemap: https://heaven-studioads.surge.sh/sitemap.xml
+# published 2026-11-02T08:52Z

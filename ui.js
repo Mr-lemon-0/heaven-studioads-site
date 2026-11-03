@@ -109,13 +109,7 @@ const bkFAIL=()=>{const body=['Brand: '+v('#bk-brand'),'Name: '+v('#bk-name'),'E
 const viaBackend=fetch('https://ai-ugc-ads-a120260a.base44.app/functions/createPortfolioBooking',{method:'POST',
 headers:{'Content-Type':'application/json'},
 body:JSON.stringify(bkData)}).then(r=>r.json()).then(j=>{if(j&&j.ok===true){bkOK();return true;}throw 0;});
-viaBackend.catch(()=>fetch('https://formsubmit.co/ajax/heavenstuido.ads@gmail.com',{method:'POST',
-headers:{'Content-Type':'application/json','Accept':'application/json'},
-body:JSON.stringify({_subject:'Booking request — '+v('#bk-brand'),_template:'table',
-'Brand':v('#bk-brand'),'Name':v('#bk-name'),'Email':v('#bk-email'),'Package':pkgT,
-'Custom volume':v('#bk-custom'),'Product / audience':v('#bk-msg')})})
-.then(r=>r.json()).then(r=>{if(r.success==='true'||r.success===true){bkOK();return true;}bkFAIL();})
-.catch(()=>bkFAIL()));});
+viaBackend.catch(()=>{const n=document.getElementById('bk-note');if(n){n.hidden=false;n.textContent='Could not send right now. Please message us on WhatsApp and we will reply within the hour.';}return false;});});
 })();
 
 /* Oracle-style contact widget */
