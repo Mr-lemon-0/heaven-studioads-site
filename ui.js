@@ -98,7 +98,7 @@ sel.addEventListener('change',toggle);
 qa('.open-bk').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();open();
   if(a.dataset.pkg){[...sel.options].forEach(o=>{if(o.text.startsWith(a.dataset.pkg))sel.value=o.text;});toggle();}}));
 f.addEventListener('submit',e=>{e.preventDefault();
-const v=id=>f.querySelector(id).value.trim();
+const v=id=>{const el=f.querySelector(id);return el?el.value.trim():'';};
 if(!v('#bk-brand')||!v('#bk-email')||!/.+@.+\..+/.test(v('#bk-email'))){note.hidden=false;note.className='bk-note bad';note.textContent='Please add your brand name and a valid email.';return;}
 note.hidden=false;note.className='bk-note';note.textContent='Sending…';
 const pkgT=sel.options[sel.selectedIndex].text;
