@@ -102,11 +102,11 @@ const v=id=>f.querySelector(id).value.trim();
 if(!v('#bk-brand')||!v('#bk-email')||!/.+@.+\..+/.test(v('#bk-email'))){note.hidden=false;note.className='bk-note bad';note.textContent='Please add your brand name and a valid email.';return;}
 note.hidden=false;note.className='bk-note';note.textContent='Sending…';
 const pkgT=sel.options[sel.selectedIndex].text;
-const bkData={brand:v('#bk-brand'),name:v('#bk-name'),email:v('#bk-email'),pkg:pkgT,custom:v('#bk-custom'),message:v('#bk-msg')};
+const pkgKey=/trial/i.test(pkgT)?'trial':(/month/i.test(pkgT)?'monthly':'custom');const bkData={brand:v('#bk-brand'),name:v('#bk-name'),email:v('#bk-email'),pkg:pkgKey,phone:(v('#bk-phone')||''),note:(pkgT?'Package: '+pkgT+' | ':'')+(v('#bk-custom')?'Volume: '+v('#bk-custom')+' | ':'')+(v('#bk-msg')||'')};
 const bkOK=()=>{f.classList.add('sent');note.className='bk-note ok';
   note.textContent='Booking request received. We will get back to you within a few business hours — no email needed.';};
 const bkFAIL=()=>{const body=['Brand: '+v('#bk-brand'),'Name: '+v('#bk-name'),'Email: '+v('#bk-email'),'Package: '+pkgT,'Custom volume: '+v('#bk-custom'),'','Product / audience:',v('#bk-msg')].join('\n');const href='mailto:heavenstuido.ads@gmail.com?subject='+encodeURIComponent('Booking request - '+v('#bk-brand'))+'&body='+encodeURIComponent(body);note.className='bk-note';note.innerHTML='Your email app is opening with the details. If it does not open, write to '+'<a href="'+href+'" style="color:inherit;text-decoration:underline">heavenstuido.ads@gmail.com</a> and we confirm your slot.';f.classList.add('sent');try{window.location.href=href;}catch(e){}};
-const viaBackend=fetch('https://ai-ugc-ads-a120260a.base44.app/functions/createPortfolioBooking',{method:'POST',
+const viaBackend=fetch('https://ai-ugc-ads-a120260a.base44.app/functions/createBookingLead',{method:'POST',
 headers:{'Content-Type':'application/json'},
 body:JSON.stringify(bkData)}).then(r=>r.json()).then(j=>{if(j&&j.ok===true){bkOK();return true;}throw 0;});
 viaBackend.catch(()=>{const n=document.getElementById('bk-note');if(n){n.hidden=false;n.textContent='Could not send right now. Please message us on WhatsApp and we will reply within the hour.';}return false;});});
