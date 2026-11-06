@@ -345,9 +345,3 @@ body{transition:background 1.1s ease}
 
 @media(prefers-reduced-motion:reduce){#cw-btn,#cw-card{transition:none}}
 
-/* work reel: compact desktop card, phone layout untouched (owner rule) */
-.workvid{display:none}
-@media (min-width:900px){
-  .workvid{display:block;position:absolute;left:clamp(18px,5vw,64px);top:50%;transform:translateY(-50%);width:170px;flex:0 0 auto;opacity:.92}
-  .workvid video{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:12px;box-shadow:0 14px 40px rgba(0,0,0,.45);background:#000}
-}
