@@ -448,3 +448,12 @@ summary::marker{font-size:12px}
 /* promo film frame */
 .promo-vid{display:block;width:100%;height:auto;border-radius:26px;background:#000}
 figure.phone{max-width:360px;margin:0 auto}
+
+/* video controls */
+figure.phone{position:relative}
+.vid-ctl{display:flex;gap:10px;justify-content:center;margin-top:14px;flex-wrap:wrap}
+.vbtn{appearance:none;background:rgb(255 255 255 / 8%);color:var(--ink);border:1px solid var(--line);
+  border-radius:999px;min-height:44px;min-width:96px;padding:0 18px;font-size:12px;letter-spacing:.18em;
+  text-transform:uppercase;cursor:pointer;backdrop-filter:blur(6px)}
+.vbtn:hover{background:rgb(255 255 255 / 14%)}
+.vbtn:focus-visible{outline:2px solid var(--ice);outline-offset:2px}
