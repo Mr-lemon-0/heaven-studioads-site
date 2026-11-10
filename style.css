@@ -440,3 +440,7 @@ footer{
 #bar nav a{display:inline-flex;align-items:center;min-height:44px}
 footer a{display:inline-flex;align-items:center;min-height:44px}
 .mq-track span,.ed-row{pointer-events:none}
+
+/* FAQ rows were 18px tall on mobile, effectively untappable (measured 2026-11-10) */
+summary{display:flex;align-items:center;min-height:44px;padding:12px 0;cursor:pointer}
+summary::marker{font-size:12px}
