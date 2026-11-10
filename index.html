@@ -440,6 +440,10 @@ nav a,footer a,.foot a,header a,button{min-height:44px;min-width:44px;display:in
     <h2>Our own ads, <span class="accent">made the same way.</span></h2>
     <figure class="phone">
       <video id="promoVideo" class="promo-vid" poster="media/poster_small.jpg" muted autoplay loop playsinline webkit-playsinline preload="auto" width="1080" height="1920" title="Heaven Studioads promo film" aria-label="Heaven Studioads promo film"><source src="media/agency_promo_mobile.mp4" type="video/mp4"></video>
+      <div class="vid-ctl">
+        <button id="promoToggle" type="button" class="vbtn" aria-label="Pause video">Pause</button>
+        <button id="promoSound" type="button" class="vbtn" aria-label="Turn sound on">Sound on</button>
+      </div>
     </figure>
     <p class="sub sub-center">Every Heaven Studioads asset, shot, styled and QA'd in-house. This one is ours.</p>
   </div>
@@ -705,14 +709,29 @@ nav a,footer a,.foot a,header a,button{min-height:44px;min-width:44px;display:in
 (function(){
   var v = document.getElementById('promoVideo');
   if (!v) return;
-  v.muted = true;
-  v.setAttribute('muted', '');
+  var tg = document.getElementById('promoToggle'), sd = document.getElementById('promoSound');
+  v.muted = true; v.setAttribute('muted', '');
   function kick(){ var p = v.play(); if (p && p.catch) p.catch(function(){}); }
   kick();
   v.addEventListener('loadeddata', kick);
-  document.addEventListener('visibilitychange', function(){ if (!document.hidden) kick(); });
+  document.addEventListener('visibilitychange', function(){ if (!document.hidden && v.dataset.userPaused !== '1') kick(); });
   window.addEventListener('scroll', kick, { once: true, passive: true });
-  setInterval(function(){ if (v.paused) kick(); }, 2500);
+  setInterval(function(){ if (v.paused && v.dataset.userPaused !== '1') kick(); }, 2500);
+  if (tg) {
+    tg.addEventListener('click', function(){
+      if (v.paused) { v.dataset.userPaused = '0'; kick(); tg.textContent = 'Pause'; tg.setAttribute('aria-label','Pause video'); }
+      else { v.dataset.userPaused = '1'; v.pause(); tg.textContent = 'Play'; tg.setAttribute('aria-label','Play video'); }
+    });
+  }
+  if (sd) {
+    sd.addEventListener('click', function(){
+      v.muted = !v.muted;
+      if (!v.muted && v.volume === 0) v.volume = 1;
+      sd.textContent = v.muted ? 'Sound on' : 'Sound off';
+      sd.setAttribute('aria-label', v.muted ? 'Turn sound on' : 'Turn sound off');
+      kick();
+    });
+  }
 })();
 </script>
   <script src="i18n.js" defer></script>
