@@ -386,7 +386,6 @@ nav a,footer a,.foot a,header a,button{min-height:44px;min-width:44px;display:in
       <div><dt data-cnt="100" data-suf="%">100%</dt><dd>HUMAN QA</dd></div>
     </dl>
   </div>
-    <div class="hero-proof" id="heroProof"><div class="hero-media" id="heroMedia"><video id="heroVideo" poster="media/poster_small.jpg" muted loop playsinline webkit-playsinline preload="auto" width="720" height="1280" class="hero-vid" title="Heaven Studioads sample video ad"></video><button id="heroSound" type="button" class="hero-snd" aria-label="Turn sound on">Sound on</button></div></div>
 <div class="scrollcue">SCROLL</div>
   <div class="marquee" aria-hidden="true"><div class="mq-track"><span>REALISTIC UGC VIDEO ADS</span><b>·</b><span>CAPTION-PERFECT AD VIDEOS</span><b>·</b><span>4-5 DAYS FIRST DELIVERY</span><b>·</b><span>HUMAN QA ON EVERY ASSET</span><b>·</b><span>REALISTIC UGC VIDEO ADS</span><b>·</b><span>CAPTION-PERFECT AD VIDEOS</span><b>·</b><span>4-5 DAYS FIRST DELIVERY</span><b>·</b><span>HUMAN QA ON EVERY ASSET</span><b>·</b></div></div>
 </section>
@@ -440,7 +439,7 @@ nav a,footer a,.foot a,header a,button{min-height:44px;min-width:44px;display:in
     <span class="tag">ON AIR</span>
     <h2>Our own ads, <span class="accent">made the same way.</span></h2>
     <figure class="phone">
-      <div class="hero-media" id="promoPh" aria-hidden="true"></div>
+      <video id="promoVideo" class="promo-vid" poster="media/poster_small.jpg" muted autoplay loop playsinline webkit-playsinline preload="auto" width="1080" height="1920" title="Heaven Studioads promo film" aria-label="Heaven Studioads promo film"><source src="media/agency_promo_mobile.mp4" type="video/mp4"></video>
     </figure>
     <p class="sub sub-center">Every Heaven Studioads asset, shot, styled and QA'd in-house. This one is ours.</p>
   </div>
@@ -704,17 +703,16 @@ nav a,footer a,.foot a,header a,button{min-height:44px;min-width:44px;display:in
 </script>
 <script>
 (function(){
-  var v=document.getElementById('heroVideo'), snd=document.getElementById('heroSound');
-  if(!v) return;
-  var small = window.matchMedia('(max-width: 900px)').matches;
-  v.src = small ? 'media/agency_promo_mobile.mp4' : 'media/agency_promo_1080.mp4';
+  var v = document.getElementById('promoVideo');
+  if (!v) return;
   v.muted = true;
-  var p = v.play();
-  if (p && p.catch) p.catch(function(){ if(snd){ snd.textContent='Play'; snd.onclick=function(){ v.muted=true; v.play(); }; } });
-  if (snd) snd.addEventListener('click', function(){
-    v.muted = !v.muted; snd.textContent = v.muted ? 'Sound on' : 'Sound off';
-    snd.setAttribute('aria-label', v.muted ? 'Turn sound on' : 'Turn sound off'); v.play();
-  });
+  v.setAttribute('muted', '');
+  function kick(){ var p = v.play(); if (p && p.catch) p.catch(function(){}); }
+  kick();
+  v.addEventListener('loadeddata', kick);
+  document.addEventListener('visibilitychange', function(){ if (!document.hidden) kick(); });
+  window.addEventListener('scroll', kick, { once: true, passive: true });
+  setInterval(function(){ if (v.paused) kick(); }, 2500);
 })();
 </script>
   <script src="i18n.js" defer></script>
