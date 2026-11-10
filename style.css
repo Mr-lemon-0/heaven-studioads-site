@@ -435,3 +435,8 @@ footer{
   #bar,footer{background:rgb(16 16 16 / 96%)}
   .card,.plans-extra{background:rgb(20 20 20 / 94%)}
 }
+
+/* touch targets: every tappable row is at least 44px tall (shipgate warning, 2026-11-10) */
+#bar nav a{display:inline-flex;align-items:center;min-height:44px}
+footer a{display:inline-flex;align-items:center;min-height:44px}
+.mq-track span,.ed-row{pointer-events:none}
