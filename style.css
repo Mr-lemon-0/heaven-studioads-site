@@ -477,3 +477,32 @@ figure.phone{position:relative}
 .idea h3{font-family:var(--disp);font-size:clamp(19px,2vw,24px);line-height:1.25;color:var(--ink);margin:0 0 12px}
 .idea p{font-size:14px;line-height:1.65;color:var(--mut);margin:0}
 .work-note{margin-top:clamp(20px,2.6vw,30px);font-size:14px;color:var(--mut)}
+
+/* ===== desktop legibility (owner report 2026-11-11: everything looked tiny on desktop) =====
+   Cause: no base size was set and nearly every element was hard-coded between 10px and 12px.
+   Fix: a real base size plus a floor on the small labels, scaled up on wide screens. */
+html{font-size:100%}
+body{font-size:17px;line-height:1.55}
+#bar strong{font-size:14px;letter-spacing:.2em}
+#bar nav{font-size:13px;letter-spacing:.14em}
+.tag{font-size:12px;letter-spacing:.2em;padding:9px 16px}
+.btn{font-size:14px;letter-spacing:.1em;padding:16px 30px}
+.stats dt{font-size:clamp(30px,3.6vw,48px)}
+.stats dd{font-size:12px;letter-spacing:.18em}
+.scrollcue{font-size:12px;letter-spacing:.2em}
+.card h3{font-size:14px;letter-spacing:.1em}
+.card .price small{font-size:14px}
+.note,.work-note{font-size:15px;line-height:1.65}
+footer{font-size:12px;letter-spacing:.18em}
+.steps li{font-size:12px;letter-spacing:.1em}
+.mq-track{font-size:12px;letter-spacing:.22em}
+#stage{font-size:13px;letter-spacing:.2em}
+.reel .cap{font-size:12px;letter-spacing:.2em}
+.ed-row,.ed-n{font-size:13px}
+p{font-size:clamp(16px,1.05vw,19px);line-height:1.65}
+.ov p{font-size:clamp(16px,1.1vw,20px);line-height:1.7}
+h2{font-size:clamp(32px,4.4vw,64px);line-height:1.12}
+#hero-h{font-size:clamp(46px,7.4vw,112px);line-height:1.02}
+@media(min-width:1500px){body{font-size:18px}.ov{max-width:720px}}
+/* if the reveal observer never fires, content must still be readable, never blurred or invisible */
+.rv>*{filter:none}
