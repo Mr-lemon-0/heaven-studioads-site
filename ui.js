@@ -14,8 +14,7 @@ addEventListener('scroll',()=>{const d=document.documentElement;
 const hh=q('#hero-h');
 if(hh){const parts=[];hh.childNodes.forEach(n=>{
   if(n.nodeType===3){n.textContent.split(/\s+/).filter(Boolean).forEach(w=>parts.push(`<span class="w"><i>${w}</i></span>`))}
-  else if(n.tagName==='EM'){const e=document.createElement('span');e.innerHTML=n.innerHTML;
-    parts.push(`<span class="w"><i><em style="font-style:italic">${e.textContent}</em></i></span>`)}});
+  else if(n.nodeType===1){parts.push(`<span class="w"><i>${n.outerHTML}</i></span>`)}});
   hh.innerHTML=parts.join(' ');
   hh.querySelectorAll('.w i em').forEach(e=>{e.style.background='linear-gradient(110deg,#8a5a2b 20%,#f1ebe2 42%,#b08d57 62%)';e.style.backgroundSize='220% 100%';e.style.webkitBackgroundClip='text';e.style.color='transparent';e.style.animation='shim 5s linear infinite'});
   requestAnimationFrame(()=>requestAnimationFrame(()=>hh.classList.add('go')));}
