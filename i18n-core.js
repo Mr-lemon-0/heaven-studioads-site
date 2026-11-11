@@ -98,7 +98,7 @@
 
   /* one place that knows money. Amounts are the real card, never derived at runtime. */
   var PRICES = {
-    INR_DISABLED: { trial: 450, monthly: 1800, locale: "en-US" },
+    LEGACY_MARKET: { trial: 450, monthly: 1800, locale: "en-US" },
     USD: { trial: 450, monthly: 1800, locale: "en-US" }
   };
 
