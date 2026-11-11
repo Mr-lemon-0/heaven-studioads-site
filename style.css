@@ -457,3 +457,14 @@ figure.phone{position:relative}
   text-transform:uppercase;cursor:pointer;backdrop-filter:blur(6px)}
 .vbtn:hover{background:rgb(255 255 255 / 14%)}
 .vbtn:focus-visible{outline:2px solid var(--ice);outline-offset:2px}
+
+/* ===== hero layout fix (owner report 2026-11-11: stats collided with the ticker, second heading line invisible) ===== */
+#hero{flex-direction:column;align-items:center;justify-content:center;gap:0;min-height:92svh;
+  padding-top:13vh;padding-bottom:calc(6vh + 30px)}
+#hero .ov{max-width:760px;text-align:center;margin:0 auto}
+#hero .stats{justify-content:center;margin-top:34px;margin-bottom:0}
+#hero .marquee{flex:0 0 auto;margin-top:clamp(24px,3.2vh,42px)}
+#hero .scrollcue{bottom:1.5vh}
+/* the reveal animation must never leave the headline invisible if the observer never fires */
+#hero-h .w i{opacity:1;transform:none}
+#hero-h.go .w i{opacity:1;transform:none}
