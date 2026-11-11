@@ -468,3 +468,12 @@ figure.phone{position:relative}
 /* the reveal animation must never leave the headline invisible if the observer never fires */
 #hero-h .w i{opacity:1;transform:none}
 #hero-h.go .w i{opacity:1;transform:none}
+
+/* work section: three real ad shapes, never empty thumbnails */
+.ideas{display:grid;gap:clamp(14px,2vw,22px);margin:clamp(24px,3vw,38px) 0 0}
+@media(min-width:820px){.ideas{grid-template-columns:repeat(3,1fr)}}
+.idea{border:1px solid var(--line);border-radius:18px;padding:22px 22px 24px;background:var(--glass);backdrop-filter:blur(8px)}
+.idea-tag{display:inline-block;font-size:10px;letter-spacing:.28em;color:var(--ice);margin-bottom:14px}
+.idea h3{font-family:var(--disp);font-size:clamp(19px,2vw,24px);line-height:1.25;color:var(--ink);margin:0 0 12px}
+.idea p{font-size:14px;line-height:1.65;color:var(--mut);margin:0}
+.work-note{margin-top:clamp(20px,2.6vw,30px);font-size:14px;color:var(--mut)}
