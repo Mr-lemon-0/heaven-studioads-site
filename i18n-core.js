@@ -98,7 +98,7 @@
 
   /* one place that knows money. Amounts are the real card, never derived at runtime. */
   var PRICES = {
-    INR: { trial: 9000, monthly: 30000, locale: "en-IN" },
+    INR_DISABLED: { trial: 450, monthly: 1800, locale: "en-US" },
     USD: { trial: 450, monthly: 1800, locale: "en-US" }
   };
 
@@ -121,9 +121,9 @@
   function resolveMarket(input) {
     input = input || {};
     var forced = String(input.param || "").toUpperCase();
-    if (forced === "INR" || forced === "USD") return forced;
+    if (forced === "USD") return forced;
     var country = String(input.country || "").toUpperCase();
-    return country === "IN" ? "INR" : "USD";
+    return "USD";
   }
 
   function formatPrice(kind, market) {
@@ -134,7 +134,7 @@
         style: "currency", currency: market, maximumFractionDigits: 0
       }).format(table[kind]);
     } catch (e) {
-      return (market === "INR" ? "Rs " : "$") + table[kind];
+      return "$" + table[kind];
     }
   }
 
