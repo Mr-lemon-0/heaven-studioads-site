@@ -25,7 +25,7 @@
       var key = el.getAttribute("data-i18n");
       var fallback = el.getAttribute("data-i18n-fallback") || el.textContent;
       var value = core.t(lang, key, fallback);
-      if (key === "h1") el.innerHTML = value; else el.textContent = value;
+      if (key === "h1" || (value && value.indexOf("<") !== -1)) el.innerHTML = value; else el.textContent = value;
     }
   }
 
