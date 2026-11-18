@@ -56,7 +56,7 @@ cur.style.left=cx+'px';cur.style.top=cy+'px';cr=null;});},{passive:true});
 document.addEventListener('pointerover',e=>{cur.classList.toggle('big',!!e.target.closest('.btn,.card,a[href],video'))});
 })();
 /* stat values render final, never a mid-count fake number */
-(function(){qa('.stats dt[data-cnt]').forEach(el=>{const end=+el.dataset.cnt,suf=el.dataset.suf||'',aft=el.dataset.aft||'';el.textContent=aft?(end+'+'+aft):(end+suf);});})();
+(function(){qa('.stats dt[data-cnt]').forEach(el=>{const end=+el.dataset.cnt,suf=el.dataset.suf||'',aft=el.dataset.aft||'',pre=el.dataset.pre||'';el.textContent=pre+(aft?(end+'+'+aft):(end+suf));});})();
 /* scroll-controlled color journey (subtle, palette-true) */
 (function(){const stops=[[5,4,3],[10,8,6],[8,6,10],[5,4,3]];let jraf=null;
 addEventListener('scroll',()=>{if(!jraf)jraf=requestAnimationFrame(()=>{
